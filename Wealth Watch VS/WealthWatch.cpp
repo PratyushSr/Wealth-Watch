@@ -13,10 +13,11 @@ int main() {
     UserData user;
     std::cin >> user;
 
-    std::ofstream file("WWUserData.txt");
+   // std::ofstream file("WWUserData.txt");
+    std::ofstream file("WWUserData.csv");
     if (file.is_open()) {
-        file << "Name: " << user.getName() << std::endl;
-        file << "Salary: " << user.getSalary() << std::endl;
+        file << "Name: ," << user.getName() << std::endl;
+        file << "Salary: ," << user.getSalary() << std::endl;
         std::cout << "User data stored in WWUserData.txt" << std::endl;
         file.close();
     }
