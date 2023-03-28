@@ -68,7 +68,6 @@ Node* readListFromCsv(const std::string& filename) {
     inFile.close();
     return head;
 }
-
 void deleteEntry(Node*& head, const std::string& name) {
     Node* current = head;
     Node* previous = nullptr;
@@ -93,7 +92,6 @@ void deleteEntry(Node*& head, const std::string& name) {
         current = current->next;
     }
 }
-
 void printList(Node* head) {
     std::cout << "Entry Name\tEntry Date\tEntry Value\tEntry Tag" << std::endl;
     std::cout << "-------------------------------------------------------" << std::endl;
@@ -153,7 +151,7 @@ int main() {
                 std::cout << "Enter the entry name: ";
                 std::getline(std::cin, data.EntryName);
 
-                std::cout << "Enter the entry date: ";
+                std::cout << "Enter the entry date(yyyy-mm-dd) : ";
                 std::getline(std::cin, data.EntryDate);
 
                 std::cout << "Enter the entry value: ";
@@ -169,7 +167,7 @@ int main() {
                 newNode->next = head;
                 head = newNode;
 
-                std::cout << "Entry added successfully!" << std::endl;
+                std::cout << "Entry added successfully!" << std::endl << std::endl;
                 std::cout << "Do you want to add another entry? (y/n) ";
 
                 std::getline(std::cin, input);
@@ -205,6 +203,7 @@ int main() {
     } while (input != "5");
 
     writeListToCsv(head, filename);
+    std::cout << std::endl << "Data stored to: "<<filename<<", Program Exited, Goodbye!" << std::endl;
     //printList(head);
     // 
     // Free memory

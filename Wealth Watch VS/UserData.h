@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+
 struct UserTile {
     std::string EntryName;
     std::string EntryDate;
