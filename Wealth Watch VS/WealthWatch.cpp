@@ -69,8 +69,35 @@ Node* readListFromCsv(const std::string& filename) {
     return head;
 }
 
+void deleteEntry(Node*& head, const std::string& name) {
+    Node* current = head;
+    Node* previous = nullptr;
+    while (current != nullptr) {
+        if (current->data.EntryName == name) {
+            if (previous == nullptr) {
+                // The entry to delete is the first one in the list
+                head = current->next;
+                delete current;
+            }
+            else {
+                // The entry to delete is not the first one in the list
+                previous->next = current->next;
+                delete current;
+            }
+
+            std::cout << "Entry deleted successfully!" << std::endl;
+            return;
+        }
+
+        previous = current;
+        current = current->next;
+    }
+}
+
 void printList(Node* head) {
-    std::cout << "EntryName\tEntryDate\tEntryValue\tEntryTag" << std::endl;
+    std::cout << "Entry Name\tEntry Date\tEntry Value\tEntry Tag" << std::endl;
+    std::cout << "-------------------------------------------------------" << std::endl;
+
 
     Node* current = head;
     while (current != nullptr) {
@@ -111,9 +138,10 @@ int main() {
     do {
         std::cout << std::endl << "Menu:" << std::endl<<std::endl;
         std::cout << "1: Add new entry" << std::endl;
-        std::cout << "2: Print table" << std::endl;
-        std::cout << "3: Sort by (under development)" << std::endl;
-        std::cout << "4: Exit" << std::endl << std::endl;
+        std::cout << "2: Delete entry" << std::endl;
+        std::cout << "3: Print table" << std::endl;
+        std::cout << "4: Sort by (under development)" << std::endl;
+        std::cout << "5: Exit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
         std::getline(std::cin, input);
 
@@ -157,17 +185,24 @@ int main() {
             }
         }
         else if (input == "2") {
+            std::string nameToDelete;
+            std::cout << "\nEnter Entry Name to delete: ";
+            std::getline(std::cin, nameToDelete);
+            deleteEntry(head,nameToDelete);
+
+        }
+        else if (input == "3") {
             // Print the linked list as a table
             printList(head);
         }
-        else if (input == "3") {
+        else if (input == "4") {
             std::cout<<"This section is currently under development!"<<std::endl;
         }
-        else if (input != "4") {
+        else if (input != "5") {
             // Invalid input
-            std::cout << "Invalid input. Please enter 1, 2 or 3." << std::endl;
+            std::cout << "Invalid input. Please enter 1, 2, 3, 4 or 5." << std::endl;
         }
-    } while (input != "4");
+    } while (input != "5");
 
     writeListToCsv(head, filename);
     //printList(head);
