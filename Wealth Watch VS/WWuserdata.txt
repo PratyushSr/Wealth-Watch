@@ -1,2 +1,0 @@
-Name: Peter
-Salary: 1404

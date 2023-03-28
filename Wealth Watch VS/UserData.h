@@ -4,6 +4,12 @@
 
 #include <string>
 #include <iostream>
+struct UserTile {
+    std::string EntryName;
+    std::string EntryDate;
+    float EntryValue;
+    std::string EntryTag;
+};
 
 class UserData {
 public:
