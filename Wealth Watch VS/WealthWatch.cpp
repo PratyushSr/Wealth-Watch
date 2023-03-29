@@ -101,7 +101,7 @@ void printList(Node* head) {
     while (current != nullptr) {
         std::cout << current->data.EntryName << "\t"
             << current->data.EntryDate << "\t"
-            << current->data.EntryValue << "\t"
+            << current->data.EntryValue << "\t\t"
             << current->data.EntryTag << std::endl;
         current = current->next;
     }
@@ -131,7 +131,7 @@ int main() {
     //    return 1;
     //}
 
- //   Node* head = nullptr;
+ // Node* head = nullptr; //for different initialization, incase we dont already have 
     std::string input;
     do {
         std::cout << std::endl << "Menu:" << std::endl<<std::endl;
@@ -183,6 +183,7 @@ int main() {
             }
         }
         else if (input == "2") {
+            // Search for an entry by EntryName then delete it.
             std::string nameToDelete;
             std::cout << "\nEnter Entry Name to delete: ";
             std::getline(std::cin, nameToDelete);
@@ -204,8 +205,7 @@ int main() {
 
     writeListToCsv(head, filename);
     std::cout << std::endl << "Data stored to: "<<filename<<", Program Exited, Goodbye!" << std::endl;
-    //printList(head);
-    // 
+ 
     // Free memory
     Node* current = head;
     while (current != nullptr) {
