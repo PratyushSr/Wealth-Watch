@@ -12,16 +12,16 @@ struct UserTile {
     std::string EntryTag;
 };
 
-//class UserData {
-//public:
-//    UserData() : name(""), salary(0.0f) {}
-//    std::string getName() const { return name; }
-//    float getSalary() const { return salary; }
-//    friend std::istream& operator>>(std::istream& in, UserData& data);
-//
-//private:
-//    std::string name;
-//    float salary;
-//};
+struct Node {
+    UserTile data;
+    Node* next;
+};
+
+void writeListToCsv(Node* head, const std::string& filename);
+Node* readListFromCsv(const std::string& filename);
+void deleteEntry(Node*& head, const std::string& name);
+void printList(Node* head);
+Node* addEntry(Node* head);
+void TotalSum(Node* head);
 
 #endif
