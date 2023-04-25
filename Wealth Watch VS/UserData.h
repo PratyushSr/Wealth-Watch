@@ -23,5 +23,6 @@ void deleteEntry(Node*& head, const std::string& name);
 void printList(Node* head);
 Node* addEntry(Node* head);
 void TotalSum(Node* head);
+bool searchList(Node* head, const std::string& value);
 
 #endif

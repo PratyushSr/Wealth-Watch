@@ -153,3 +153,24 @@ Node* addEntry(Node* head) {
 
     return head;
 }
+
+bool searchList(Node* head, const std::string& value) {//Easter Egg Search
+    Node* current = head;
+    while (current != nullptr) {
+        if (current->data.EntryName == value || current->data.EntryDate == value
+            || std::to_string(current->data.EntryValue) == value || current->data.EntryTag == value) {
+            HANDLE plConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(plConsole, 6);
+            std::cout << "Entry Name\tEntry Date\tEntry Value\tEntry Tag" << std::endl;
+            std::cout << "-------------------------------------------------------" << std::endl;
+            SetConsoleTextAttribute(plConsole, 15);
+            std::cout << current->data.EntryName << "\t"
+                << current->data.EntryDate << "\t"
+                << current->data.EntryValue << "\t\t"
+                << current->data.EntryTag << std::endl;
+            return true;  // Value found
+        }
+        current = current->next;
+    }
+    return false;  // Value not found
+}

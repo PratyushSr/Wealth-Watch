@@ -9,7 +9,6 @@ Project: Wealth Watch - Personal Financial Tracker
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <algorithm>
 #include <windows.h>
 #include "UserData.h"
 #include "Sorting.h"
@@ -45,7 +44,8 @@ int main() {
         std::cout << "2: Delete entry" << std::endl;
         std::cout << "3: Print table" << std::endl;
         std::cout << "4: Sort by" << std::endl;
-        std::cout << "5: Exit" << std::endl << std::endl;
+        std::cout << "5: Search Entry" << std::endl;
+        std::cout << "6: Exit" << std::endl << std::endl;
         SetConsoleTextAttribute(hConsole, 10);
         std::cout << "Enter your choice: ";
         SetConsoleTextAttribute(hConsole, 15);
@@ -74,8 +74,16 @@ int main() {
         else if (input == "4") {
             //goes to sorting.cpp
             sortList(head);
-        }       
-    } while (input != "5");
+        }
+        else if (input == "5") {
+            system("CLS");
+            std::cout << std::endl << "Enter Name you want to search" << std::endl;
+            std::string s;
+            std::getline(std::cin,s);
+            searchList(head, s);
+            std::cout << std::endl;
+        }
+    } while (input != "6");
 
     writeListToCsv(head, filename);
 
