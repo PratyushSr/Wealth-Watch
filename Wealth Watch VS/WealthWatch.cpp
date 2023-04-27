@@ -13,6 +13,7 @@ Project: Wealth Watch - Personal Financial Tracker
 #include "UserData.h"
 #include "Sorting.h"
 
+//The Console Calls and handles for User UI Colors were also learned from w3school's c++ tutorials
 int main() {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, 6);
@@ -95,6 +96,7 @@ int main() {
     SetConsoleTextAttribute(hConsole, 11);
     std::cout << filename << std::endl << std::endl;
     SetConsoleTextAttribute(hConsole, 15);
+
     // Free memory
     Node* current = head;
     while (current != nullptr) {

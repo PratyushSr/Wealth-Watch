@@ -5,6 +5,8 @@
 #include <iomanip>
 #include <Windows.h>
 
+
+//Write List to CSV was a functioned learned from w3school c++ tutorials
 void writeListToCsv(Node* head, const std::string& filename) {
     std::ofstream outFile(filename);
     if (!outFile.is_open()) {
@@ -24,6 +26,7 @@ void writeListToCsv(Node* head, const std::string& filename) {
     }
     outFile.close();
 }
+//Read List from CSV was a functioned learned from w3school c++ tutorials
 Node* readListFromCsv(const std::string& filename) {
     Node* head = nullptr;
 
@@ -58,30 +61,38 @@ Node* readListFromCsv(const std::string& filename) {
     inFile.close();
     return head;
 }
+//Delete Entry is based on performing delete operations on a linked list learned in class.
 void deleteEntry(Node*& head, const std::string& name) {
     HANDLE plConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     Node* current = head;
     Node* previous = nullptr;
+    bool x = true;
     while (current != nullptr) {
         if (current->data.EntryName == name) {
             if (previous == nullptr) {
                 // The entry to delete is the first one in the list
                 head = current->next;
                 delete current;
+                x = false;
             }
             else {
                 // The entry to delete is not the first one in the list
                 previous->next = current->next;
                 delete current;
+                x = false;
             }
             SetConsoleTextAttribute(plConsole, 12);
             std::cout << "Entry deleted successfully!" << std::endl;
             return;
         }
+        else if (x == true) {
+            std::cout << "Entry Not Found!" << std::endl;
+        }
         previous = current;
         current = current->next;
     }
 }
+//Print List is based on operations on a linked list learned in class (and modified to our need)
 void printList(Node* head) {
     HANDLE plConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(plConsole, 6);
@@ -97,6 +108,7 @@ void printList(Node* head) {
         current = current->next;
     }
 }
+//Simple update from print list to add values together instead of printing
 void TotalSum(Node* head) {
     float total = 0;
     Node* current = head;
@@ -110,11 +122,12 @@ void TotalSum(Node* head) {
     SetConsoleTextAttribute(plConsole, 14);
     std::cout<<"$"<< total << std::endl;
 }
+//Modified version of printlist to incorporate input from user
 Node* addEntry(Node* head) {
     UserTile data;
     HANDLE plConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(plConsole, 6);
-    std::cout << std::endl << "Adding New Entry" << std::endl;
+    std::cout << std::endl << "Add New Entry" << std::endl;
     SetConsoleTextAttribute(plConsole, 14);
     std::cout << "Enter the entry name: ";
     std::getline(std::cin, data.EntryName);
@@ -153,7 +166,7 @@ Node* addEntry(Node* head) {
 
     return head;
 }
-
+//Uses linear search based on w3school's c++ linear search in linked list
 bool searchList(Node* head, const std::string& value) {//Easter Egg Search
     Node* current = head;
     while (current != nullptr) {

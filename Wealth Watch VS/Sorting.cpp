@@ -3,7 +3,8 @@
 #include "Sorting.h"  // Include the sorting header file
 #include"UserData.h"
 
-// Comparison functions for sorting
+// Comparison functions for sorting -- based on bubble sort, learned in class.
+// Similar to Professor Gaffari's Bubble Sorting Algorithm code.
 void sortByName(Node* head) {
     if (head == nullptr || head->next == nullptr) {
         return;
@@ -72,6 +73,7 @@ void sortByTag(Node* head) {
         }
     }
 }
+//Simple menu that allows access to the respective sort function based on user input
 void sortList(Node*& head) {
     int choice = 0;
     system("CLS");
